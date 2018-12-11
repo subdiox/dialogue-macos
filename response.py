@@ -19,12 +19,12 @@ import sys, os
 #options = '-m /usr/share/hts-voice/nitech-jp-atr503-m001/nitech_jp_atr503_m001.htsvoice -ow /tmp/dialogue/out.wav -x /var/lib/mecab/dic/open-jtalk/naist-jdic'
 
 jtalkbin = 'say'
-options = ' -o /tmp/dialogue/out.wav --data-format=LEF32@32000'
+options = ' -v Otoya -o /tmp/dialogue/out.wav --data-format=LEF32@32000'
 
 # 音声合成のコマンドを生成 (open jtalk を 使う場合
 def say_command(answer):
     jtalk = 'echo "' + answer + '" | ' + jtalkbin + options + ';'
-    play = 'play -q /tmp/dialogue/out.wav; rm /tmp/dialogue/out.wav;'
+    play = 'afplay /tmp/dialogue/out.wav; rm /tmp/dialogue/out.wav;'
     return jtalk + play
 
 if __name__ == '__main__':
@@ -48,5 +48,6 @@ if __name__ == '__main__':
 
     # 話者ID と認識結果を表示
     print("SPK" + str(sid) + ": " + question)
+    answer = reply[question]
     print("Silly: " + answer)
     os.system(say_command(answer))
