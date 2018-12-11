@@ -45,5 +45,5 @@ fi
 
 if [ ! `which adinrec` ]; then
   echo "[Notice] Julius is not installed. Starting installation..."
-  brew install julius julius-dictation-kit
+  brew install julius
 fi
